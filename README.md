@@ -1,0 +1,2 @@
+# Setup
+My Trading Strategy
