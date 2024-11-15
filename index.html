@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alieeestan Trade Calculator</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden; /* Prevent horizontal scrolling */
+        }
+
+        /* Open Chart Button centered at the top */
+        .open-chart-btn {
+            background-color: black;
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+            text-align: center;
+            display: block;
+            width: 100%;
+            text-decoration: none;
+        }
+
+        /* Change color when hovering over the button */
+        .open-chart-btn:hover {
+            background-color: #ff5733;  /* Change to your desired hover color */
+            color: #fff;  /* Keep text color white */
+        }
+
+        /* Layout: 3 equal vertical sections */
+        .page-container {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            margin-top: 20px;
+            flex-wrap: wrap; /* Ensures that sections wrap in smaller viewports */
+        }
+
+        /* 33% width for each section */
+        .section {
+            width: 33%;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            max-width: 33%;
+        }
+
+        /* Styling for images */
+        .section img {
+            width: 100%;
+            height: auto;
+            max-width: 90%; /* Adjust to scale the image */
+            max-height: 350px; /* Limit the height for consistent layout */
+            object-fit: contain; /* Ensures image is scaled proportionally */
+            margin-bottom: 10px;
+        }
+
+        /* Form Styling */
+        #form-container {
+            background: #f8f8f8;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 100%;
+        }
+
+        label, input, select, button {
+            display: block;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        /* Arrows and conditions list */
+        .arrow-list ul {
+            list-style-type: decimal;
+            padding-left: 20px;
+        }
+
+        .arrow-list li {
+            margin-bottom: 10px;
+        }
+
+        /* General Styling for all headings inside sections */
+        h2, h3 {
+            font-family: Arial, sans-serif;  /* Same font */
+            font-size: 20px;  /* Same font size */
+            color: #333;  /* Consistent text color */
+            margin-bottom: 10px;  /* Spacing below the headings */
+        }
+
+        .checkbox-container label {
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Calculate Button */
+        .calculate-btn {
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+
+        .calculate-btn:hover {
+            background-color: #45a049;
+        }
+
+        /* Text for the list of conditions */
+        .text-before-image {
+            font-size: 14px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Result Display */
+        #result {
+            display: none;
+            margin-top: -180px;
+            padding: 20px;
+            background-color: #f1f1f1;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+        }
+
+        .result-item {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        /* Styling for trade type color */
+        .long {
+            color: green;
+        }
+
+        .short {
+            color: red;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Open Chart Button -->
+<a href="https://www.tradingview.com/chart/9Fslp0ts/?symbol=BINANCE%3ABTCUSDT.P" target="_blank" class="open-chart-btn">
+    Observe Market Email=<span style="color: blue;">alieeestan16@gmail.com</span> 
+    Password=<span style="color: blue;"></span>
+</a>
+
+
+    <!-- Page container with 3 vertical sections -->
+    <div class="page-container">
+
+        <!-- Section 1: Stop Loss and Market Price Image -->
+        <div class="section">
+            <p class="text-before-image">Stop Loss and Market Price</p>
+            <img src="describe.png" alt="Describe Image">
+        </div>
+
+        <!-- Section 2: Form Section -->
+        <div class="section">
+            <h2>Alieeestan Trade Calculator</h2>
+            <div id="form-container">
+                <form id="leverageForm">
+                    <label for="stoploss">Stop Loss Price:</label>
+                    <input type="number" id="stoploss" required>
+
+                    <label for="currentPrice">Current Market Price:</label>
+                    <input type="number" id="currentPrice" required>
+
+              <label for="investment">Investment Amount ($):</label>
+<input type="number" id="investment" value="30" placeholder="Enter your investment" required>
+
+
+
+                    <!-- Terms and Conditions -->
+                    <h3>Terms and Conditions</h3>
+                    <div class="checkbox-container">
+                        <label>1) No News Day</label>
+                        <label>2) Must follow these 4 conditions on right</label>
+                        <label>3) No weekends</label>
+                        
+                    </div>
+
+                    <button type="button" class="calculate-btn" onclick="calculate()">Calculate</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Section 3: 4 Conditions and Arrow List -->
+        <div class="section">
+            <h3>4 Conditions</h3>
+            <p>These 4 arrows must be considered before opening a trade:</p>
+            <ul class="arrow-list">
+                <li>Buy signal must appear</li>
+                <li>A green candel closes above the shaded area</li>
+                <li>Observe the indicator bellow all the lines and dots must be of the green colour</li>
+                <li>Recent thick dot would be considered for the coloumns having no indication</li>
+
+            </ul>
+            <img src="conditions.png" alt="4 Conditions Image">
+        </div>
+
+    </div>
+    <center>
+    <!-- Result Display Section -->
+    <div id="result">
+        <div class="result-item" id="tradeTypeDisplay"></div>
+        <div class="result-item" id="entryPrice"></div>
+        <div class="result-item" id="stopLossDisplay"></div>
+        <div class="result-item" id="takeProfit"></div>
+        <div class="result-item" id="investmentDisplay"></div>
+        <div class="result-item" id="gainAtTakeProfit"></div>
+        <div class="result-item" id="lossAtStoploss"></div>
+    </div>
+    </center>
+<script>
+    function calculate() {
+        // Get inputs
+        const stoploss = parseFloat(document.getElementById("stoploss").value);
+        const currentPrice = parseFloat(document.getElementById("currentPrice").value);
+        const investment = parseFloat(document.getElementById("investment").value);
+
+        // Validate inputs
+        if (isNaN(stoploss) || isNaN(currentPrice) || isNaN(investment)) {
+            alert("Please fill in all fields correctly.");
+            return;
+        }
+
+        // Calculate the Price Change Percentage
+        const priceChangePercentage = Math.abs(currentPrice - stoploss) / currentPrice * 100;
+
+        // Calculate the required leverage to lose exactly 50% of the margin
+        const leverage = 50.0 / priceChangePercentage;
+
+        // Determine if it's a long or short position
+        const tradeType = (stoploss > currentPrice) ? "Short" : "Long";
+
+        // Calculate Take Profit percentage (1:2 risk-to-reward)
+        const takeProfitPercentage = 2 * priceChangePercentage;
+
+        // Calculate the Take Profit price
+        const takeProfitPrice = (tradeType === "Long")
+                                ? currentPrice + (takeProfitPercentage / 100 * currentPrice)
+                                : currentPrice - (takeProfitPercentage / 100 * currentPrice);
+
+        // Calculate the loss when stop loss is hit (50% margin loss)
+        const stopLossLoss = investment * leverage * (priceChangePercentage / 100);
+
+        // Calculate the gain when take profit is hit (2x the margin loss)
+        const takeProfitGain = stopLossLoss * 2;
+
+        // Update results on the page
+        document.getElementById("tradeTypeDisplay").innerHTML = `<span class="bold ${tradeType.toLowerCase()}">${tradeType} (${leverage.toFixed(2)}x)</span>`;
+        document.getElementById("entryPrice").innerText = `Entry Price: $${currentPrice.toFixed(2)}`;
+        document.getElementById("stopLossDisplay").innerText = `Stop Loss: $${stoploss.toFixed(2)}`;
+        document.getElementById("takeProfit").innerText = `Take Profit: $${takeProfitPrice.toFixed(2)}`;
+        
+        // Remove decimal places from investment
+        document.getElementById("investmentDisplay").innerText = `Investment: $${Math.floor(investment)}`;  // Remove decimal places
+        
+        // Show loss with a minus sign for Stop Loss and gain with a plus sign for Take Profit
+        document.getElementById("lossAtStoploss").innerText = `If Stop Loss Hits: -$${Math.floor(stopLossLoss)}`;  // Add minus sign
+        document.getElementById("gainAtTakeProfit").innerText = `If Take Profit Hits: +$${Math.floor(takeProfitGain)}`;  // Add plus sign
+
+        // Show the result
+        document.getElementById("result").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
